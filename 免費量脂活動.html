@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>太陽帝國 社區健康關懷日 - 免費量脂活動</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-light: #E8F5E9;
+            --accent-color: #FF4081;
+            --text-color: #333333;
+            --bg-color: #F9F9F9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Heiti TC", "Microsoft JhengHei", sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* 網頁頁首 */
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #A5D6A7 0%, #81C784 100%);
+            padding: 40px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "🌱 🌿 🌸 🍃 🌺";
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 1.8rem;
+            opacity: 0.25;
+            letter-spacing: 5px;
+        }
+
+        header::after {
+            content: "🌺 🍃 🌸 🌿 🌱";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 1.8rem;
+            opacity: 0.25;
+            letter-spacing: 5px;
+        }
+
+        .subtitle-top {
+            font-size: 1.2rem;
+            color: #1B5E20;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #004D40;
+            margin-bottom: 15px;
+            font-weight: 800;
+        }
+
+        .tagline {
+            background-color: #1B5E20;
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* 宣導引言 */
+        .intro-section {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            border-left: 5px solid var(--primary-color);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .intro-title {
+            font-size: 1.2rem;
+            color: #C62828;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        /* 活動內容 */
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            background-color: var(--primary-light);
+            padding: 10px;
+            border-radius: 50px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-text h3 {
+            font-size: 1.15rem;
+            color: #111;
+            margin-bottom: 5px;
+        }
+
+        .feature-text p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* 贈品亮點 */
+        .gift-box {
+            background-color: #FFF3E0;
+            border: 2px dashed #FFB74D;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 15px;
+            color: #E65100;
+            font-weight: bold;
+        }
+
+        /* 活動資訊欄 */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .info-box {
+            background-color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-top: 4px solid var(--primary-color);
+        }
+
+        .info-box.limit {
+            border-top-color: var(--accent-color);
+            background-color: #FFF0F5;
+        }
+
+        .info-box .icon {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+        }
+
+        .info-box .label {
+            font-size: 0.85rem;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .info-box .value {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #222;
+        }
+
+        .info-box.limit .value {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        /* 報名表單 */
+        form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 6px;
+            font-weight: bold;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+        }
+
+        label::before {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        #nameLabel::before { content: "👤"; }
+        #phoneLabel::before { content: "📞"; }
+        #roomLabel::before { content: "🏢"; }
+
+        input[type="text"], input[type="tel"] {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+
+        /* 提交按鈕 */
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button::before {
+            content: "👍";
+            margin-right: 10px;
+        }
+
+        button::after {
+            content: "🚀";
+            margin-left: 10px;
+        }
+
+        button:hover {
+            background-color: #1B5E20;
+        }
+
+        /* 頁尾 */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #666;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+
+        /* RWD 手機版調整 */
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 10px; }
+            .info-grid { grid-template-columns: 1fr 1fr; }
+            header::before, header::after {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <header>
+        <div class="subtitle-top">🍃 太陽帝國 社區健康關懷日 🍃</div>
+        <h1>免費量脂活動</h1>
+        <div class="tagline">您有多久沒有真正了解自己的身體狀況了？</div>
+    </header>
+
+    <div class="intro-section">
+        <div class="intro-title">體重，不代表健康！</div>
+        <p>真正該注意的，是<strong>健康指數</strong>！很多人看起來不胖，但健康指數早已悄悄亮起紅燈。透過精準量脂，讓數據告訴您身體真正的狀態。現在就開始重視健康、照顧自己！歡迎鄰居朋友一起來參加！</p>
+    </div>
+
+    <div class="card">
+        <h2>🎯 活動核心內容</h2>
+        
+        <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-text">
+                <h3>免費身體組成分析</h3>
+                <p>📏 精準測量並協助您了解體脂、肌肉量、內臟脂肪等重要健康數據指標。</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">👨‍⚕️</div>
+            <div class="feature-text">
+                <h3>一對一健康指數說明</h3>
+                <p>🩺 現場安排專業人員進行數據解說，給您最適合的日常健康飲食與運動建議。</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🎁</div>
+            <div class="feature-text">
+                <h3>完成好禮相送</h3>
+                <p>🎁 凡現場完成量脂與諮詢體驗者，即免費贈送「美人湯飲」一份！</p>
+            </div>
+        </div>
+
+        <div class="gift-box">
+            ✨ 完成量脂 🔴 贈送「美人湯飲」一份 ❤️
+        </div>
+    </div>
+
+    <div class="info-grid">
+        <div class="info-box">
+            <div class="icon">📅</div>
+            <div class="label">活動日期</div>
+            <div class="value">6 / 7 (星期日)</div>
+        </div>
+        <div class="info-box">
+            <div class="icon">⏰</div>
+            <div class="label">活動時間</div>
+            <div class="value">10:00 - 12:00</div>
+        </div>
+        <div class="info-box">
+            <div class="icon">📍</div>
+            <div class="label">活動地點</div>
+            <div class="value">三樓公設沙發區</div>
+        </div>
+        <div class="info-box limit">
+            <div class="icon">🔥</div>
+            <div class="label">名額限制</div>
+            <div class="value">限量 15 位</div>
+        </div>
+    </div>
+
+    <div class="card" id="register-form">
+        <h2>📝 線上預約報名表</h2>
+        <form id="healthForm" 
+              action="https://docs.google.com/forms/d/e/1FAIpQLSeuwL5vD4s-BdCpahmXL64w-hHkdIdllCDwJtxMfKhLgmguwA/formResponse" 
+              method="POST" 
+              target="hidden_iframe" 
+              onsubmit="submitted=true;">
+            
+            <div class="form-group">
+                <label id="nameLabel" for="name">住戶姓名 <span style="color:red;">*</span></label>
+                <input type="text" id="name" name="entry.1359943412" required placeholder="請輸入您的真實姓名">
+            </div>
+
+            <div class="form-group">
+                <label id="phoneLabel" for="phone">聯絡電話 <span style="color:red;">*</span></label>
+                <input type="tel" id="phone" name="entry.1821966694" required placeholder="請輸入手機號碼">
+            </div>
+
+            <div class="form-group">
+                <label id="roomLabel" for="room">戶號 (如 C3-37F) <span style="color:red;">*</span></label>
+                <input type="text" id="room" name="entry.1843433302" required placeholder="請輸入您的戶號，例如：C3-37F">
+            </div>
+
+            <button type="submit">送出報名資訊</button>
+        </form>
+    </div>
+
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(typeof submitted !== 'undefined' && submitted) { handleSuccess(); }"></iframe>
+
+    <footer>
+        🏡 ❤️ 讓我們一起關心健康，打造更美好的社區生活！ 🌸 🏡
+    </footer>
+
+</div>
+
+<script>
+    // 建立一個旗標用來追蹤是否點擊了送出
+    var submitted = false;
+
+    function handleSuccess() {
+        // 取得畫面上填寫的暫存數值（僅用來顯示在成功的提示框中）
+        const name = document.getElementById('name').value || '鄰居';
+        const room = document.getElementById('room').value || '';
+
+        // 彈出成功提示
+        alert(`🎉 報名成功！\n\n感謝戶號 ${room} 的 ${name} 鄰居，您的資料已成功寫入登記表。\n現場名額有限，若額滿將由管理櫃檯另行通知！`);
+        
+        // 重設網頁表單欄位
+        document.getElementById('healthForm').reset();
+        // 重設旗標
+        submitted = false;
+    }
+</script>
+
+</body>
+</html>
